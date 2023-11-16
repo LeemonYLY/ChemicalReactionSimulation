@@ -12,10 +12,10 @@ public class ChemicalReactionSimulation {
 		double temperature = Double.parseDouble(args[2]);
 		double pressure = Double.parseDouble(args[3]);
 
-		double reactionRate = func1(reactantA, reactantB, temperature, pressure);
-		double activationEnergy = func2(temperature);
-		double equilibriumConstant = func3(temperature, pressure);
-		double finalResult = func4(reactionRate, activationEnergy, equilibriumConstant);
+		double reactionRate = calculateReactionRate(reactantA, reactantB, temperature, pressure);
+		double activationEnergy = calculateActivationEnergy(temperature);
+		double equilibriumConstant = calculateEquilibriumConstant(temperature, pressure);
+		double finalResult = calculateCombinedValue(reactionRate, activationEnergy, equilibriumConstant);
 
 		finalResult = Math.round(finalResult * 100) * 1.0 / 100;
 		System.out.println(finalResult);
@@ -23,7 +23,8 @@ public class ChemicalReactionSimulation {
 
 	// Function to calculate the reaction rate based on reactant concentrations,
 	// temperature, and pressure
-	public static double func1(double reactantA, double reactantB, double temperature, double pressure) {
+	public static double calculateReactionRate(double reactantA, double reactantB, double temperature,
+			double pressure) {
 		// Example reaction rate formula: rate = k * [A] * [B] * exp(-Ea / (RT))
 		double reactionConstant = 0.01; // Reaction constant
 		double gasConstant = 8.31; // Gas constant
@@ -34,7 +35,7 @@ public class ChemicalReactionSimulation {
 	}
 
 	// Function to calculate the activation energy based on temperature
-	public static double func2(double temperature) {
+	public static double calculateActivationEnergy(double temperature) {
 		// Example activation energy formula: Ea = RT / 20
 		double gasConstant = 8.31; // Gas constant
 
@@ -44,7 +45,7 @@ public class ChemicalReactionSimulation {
 
 	// Function to calculate the equilibrium constant based on temperature and
 	// pressure
-	public static double func3(double temperature, double pressure) {
+	public static double calculateEquilibriumConstant(double temperature, double pressure) {
 		// Example equilibrium constant formula: Kc = P / (RT)
 		double gasConstant = 8.31; // Gas constant
 
@@ -54,7 +55,8 @@ public class ChemicalReactionSimulation {
 
 	// Function to calculate a combined value based on reaction rate, activation
 	// energy, and equilibrium constant
-	public static double func4(double reactionRate, double activationEnergy, double equilibriumConstant) {
+	public static double calculateCombinedValue(double reactionRate, double activationEnergy,
+			double equilibriumConstant) {
 		// Example combined value: reactionRate * (activationEnergy /
 		// equilibriumConstant)
 		double finalResult = reactionRate * (activationEnergy / equilibriumConstant);
